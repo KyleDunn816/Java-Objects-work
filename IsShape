@@ -1,0 +1,80 @@
+package shapesProject;
+
+/*
+ * Grade: B-
+ * 
+ * You are missing purpose statements
+ * 
+ * Tests are nicely written.
+ * 
+ * public abstract class AShape implements IShape {
+
+	protected int x; // used as a base or side-a of a shape
+	protected int h; // used as a height of triangles and a height of a rhombus 
+	
+   This design suggests that all shapes have at least two 
+   dimensions, which is not the case. A circle, for example, only
+   has one dimension. Why associate two dimensions with a shape
+   that only has one dimension? I do not understand what you 
+   were abstracting over to end with this implementation.
+ *
+ * In AQuad you have:
+ * 
+ *   protected int other;
+  
+   Why is a third dimension needed for quadrilaterals? The needed 
+   dimensions are:
+     Square: side
+     Rectangle: side1, side2
+     Rhombus: side, height
+ *
+ * In Rhombus:
+ * 
+ * public double getPerimeter() {
+		
+		// purpose: calculates the perimeter of a rhombus using the formula perimeter = 4*a
+		
+		return (4*x);
+	}
+	
+	public double getArea() {
+		
+		// purpose: calculates the area of a rhombus using the formula area = a*height
+		
+		return (x*h);
+	}
+	
+	Why do these methods exist here? Were they not abstracted
+	to AQuad?
+ *
+ * In ATri:
+ * 
+ * public ATri (int a, int b, int c, int height) {
+		
+		this.x = a; 
+		this.s2 = b;
+		this.s3 = c;
+		this.h=height;
+	}
+	
+   Is it reasonable to expect a user to provide the height of
+   a triangle?
+ *
+ * In Circle:
+ *   
+ *   private double PI = 3.14;
+ *   
+ * Use Math.PI
+ * 
+ *
+ */
+
+public interface IShape<X> {
+	
+	
+	public double getPerimeter();
+	
+	public double getArea();
+	
+
+}
