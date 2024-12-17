@@ -1,0 +1,49 @@
+package ILists;
+/*
+ * Grade: C
+ * 
+ * public boolean equals(IStack<X> V) throws Exception;
+ 
+   Why is this in the interface?
+ * 
+ * 
+ * public IStack<X> push(X v){
+		return new NMTSTACK<X>(v, new NMTSTACK<X>(top, bottom));
+	}
+	
+   Why create a new stack for the second argument?
+ * 
+ * 
+ * public IStack<X> pop() {
+		return bottom;
+	}
+	
+   The signature differs from signature in the interface (below).	
+ * 
+ * 
+ * //Purpose: To push a list to a stack
+	
+	public static <X> IStack<X> listToStack(IList<X> l, IStack<X> s)
+	
+   This method does not reverse a list.	
+ * 
+ * 
+ */
+public interface IStack<X> {
+	
+	public boolean isEmpty();
+	// Purpose: To determine if the stack is empty
+	
+	public IStack<X> push(X val);
+	// Purpose: To add an element to the top of a stack
+	
+	public IStack<X> pop() throws Exception;
+	// Purpose: To return the substack if it exists
+	
+	public X top() throws Exception;
+	// Purpose: To return the top element if it exists
+	
+	public boolean equals(IStack<X> V) throws Exception;
+	// Purpose: To determine if the stack is empty
+
+}
