@@ -1,0 +1,148 @@
+package RSort;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+/*
+ * Grade: B-
+ * 
+ * // Purpose: Helper function that finds the largest number in an array
+	public static Integer findMax(Integer[] V) {
+		Integer max = V[0]; // max is the current largest number in an array
+		int low = 0; // low is the number that represents the index of an array V
+		int high = V.length;
+		// INV: 0 <= low < high && low = V.length-high && 
+		// max = V[low]
+		while (low<high) { 
+			// 0 <= low < high && low = V.length-high 
+			if (V[low]>max) {
+				// 0 < low < high && low = V.length-(high-low)
+				max = V[low];	
+				// 0 < low < high && low = V.length-(high-low)
+			}
+			low = low + 1;
+			// 0 < low =< high && low = V.length - (high-low) + 1
+		}
+		return max;}
+
+  How can you state that 0 <= low < high is invariant? If it were
+  the above would be an infinite loop.
+  
+  How can low = V.length-high be invariant? In the loop, low
+  changes but V.length and high do not change.
+  
+  max always equals V[low]? What if low changes and max does not
+  change inside the loop?  
+  
+ * 
+ * 
+ * int total = 1; // total is a current number of digits counted
+
+		while(i > 10) {
+
+			total = total + 1;
+			i = i / 10;
+		}
+		
+	Loop invariant?
+ * 
+ * 
+ * public void bucketize (Integer[] V) {
+
+		int length = mostDig(V); // length represents number of digits in the largest number, which tells us how many times we need to bucketize/debucketize
+		int dig = 0;
+
+		
+		while (dig <= length) {
+
+			//bucketize array based on current digit
+			bucketizeHelper(V, dig);
+			//place bucketized elements back into array
+			this.debucketize(V);
+			dig = dig + 1;
+		}}
+		
+   Loop invariant?
+   
+   This function's design needs work. Currently, it is solving
+   two different problems: placing Integers in buckets and
+   sorting the array. Well-designed methods solve a single
+   problem. Putting Integers into buckets is a buckets problem,
+   but sorting an array is not a buckets problem. It is an
+   array problem. The buckets class should only solve buckets
+   problems.
+   
+ * 
+ * 
+ * public static void radix(Integer[] V) {
+			
+			
+			Integer min = Math.abs(findMin(V)); // find the absolute value of the minimum to make any negative numbers positive
+			addArr(V, min); // add that number to every element of the array
+			Buckets buckets = new Buckets(); // create buckets object to be used when sorting
+			buckets.bucketize(V); // bucketize function sorts array
+			subArr(V, min); // subtract absval of min from every element in the array
+			
+		}
+		
+   This function ought to implement Radix sorting. Your 
+   implementation makes it impossible for any reader to
+   understand how the problem was solved. Any reader would
+   not understand how sorting is done by a single step that
+   puts the elements of ARR in buckets. You are _not_ comunicating
+   how the problem is solved.
+   
+ * 
+ * 
+ * Nice that you addressed the problem with negative numbers!
+ * 
+ * You need to spend more time writing loop invariants.
+ * 
+ */
+
+class RSortTests {
+
+	Integer[] myArray = {1, 301, 45, -5, 8}; // unsorted
+    Integer[] myArray2 = {-5, 1, 8, 45, 301}; // sorted myArray
+    
+    Integer[] myArray3 = {69, 420, 3, 1, 7, 3999}; // unsorted
+    Integer[] myArray4 = {1, 3, 7, 69, 420, 3999}; // sorted myArray3
+    
+    @Test
+    void test() {
+        
+        assertEquals(Buckets.findMax(myArray), 301);
+        assertEquals(Buckets.countDig(45), 2);
+        assertEquals(Buckets.mostDig(myArray), 3);
+        
+        IBucket<Integer> bucket1 = new Bucket<Integer>();
+        bucket1.add(0);
+        bucket1.add(1);
+        bucket1.add(2);
+        bucket1.add(3);
+        Integer[] X = {0, 0, 0, 0};
+        assertEquals(bucket1.toArray(X, 0), 4);
+        assertArrayEquals(X, new Integer[] {0, 1, 2, 3});
+        RadixSort.radix(myArray);
+        
+        assertEquals(myArray[0].equals(myArray2[0]), true);
+        assertEquals(myArray[1].equals(myArray2[1]), true);
+        assertEquals(myArray[2].equals(myArray2[2]), true);
+        assertEquals(myArray[3].equals(myArray2[3]), true);
+        assertEquals(myArray[4].equals(myArray2[4]), true);
+        
+        RadixSort.radix(myArray3);
+        
+        assertEquals(myArray3[0].equals(myArray4[0]), true);
+        assertEquals(myArray3[1].equals(myArray4[1]), true);
+        assertEquals(myArray3[2].equals(myArray4[2]), true);
+        assertEquals(myArray3[3].equals(myArray4[3]), true);
+        assertEquals(myArray3[4].equals(myArray4[4]), true);
+        assertEquals(myArray3[5].equals(myArray4[5]), true);
+
+		
+	
+	}
+
+}
